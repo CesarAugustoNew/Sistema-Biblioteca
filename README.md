@@ -1,1 +1,1 @@
-# Criação de um sistema de biblioteca - Java + JDBC + Mysql
+# 📚 Sistema Biblioteca - CRUD de Usuários e Livros (Java + MySQL)
