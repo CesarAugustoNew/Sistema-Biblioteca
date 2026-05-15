@@ -11,6 +11,35 @@ O sistema permite o gerenciamento de:
 A aplicação funciona via terminal/console utilizando um menu interativo.
 
 ---
+# Modelagem Banco de Dados
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/a5fa66f6-96e1-42df-b460-c93a1290ff41" />
+
+---
+# 📁 Estrutura do projeto
+
+```bash
+src/main/java
+│
+├── Database
+│   └── sqlConn.java
+│
+├── dao
+│   ├── ILivroDAO.java
+│   └── IUsuarioDAO.java
+│
+├── daoImplements
+│   ├── LivroDAOImplements.java
+│   └── UsuarioDAOImplements.java
+│
+├── model
+│   ├── Livro.java
+│   └── Usuario.java
+│
+└── org.example
+    └── App.java
+```
+
+---
 
 # 🛠️ Tecnologias utilizadas
 
@@ -79,32 +108,6 @@ Isso simula um sistema de empréstimo de livros.
 O sistema possui uma funcionalidade específica para:
 
 - Buscar todos os usuários que possuem um livro emprestado.
-
----
-
-# 📁 Estrutura do projeto
-
-```bash
-src/main/java
-│
-├── Database
-│   └── sqlConn.java
-│
-├── dao
-│   ├── ILivroDAO.java
-│   └── IUsuarioDAO.java
-│
-├── daoImplements
-│   ├── LivroDAOImplements.java
-│   └── UsuarioDAOImplements.java
-│
-├── model
-│   ├── Livro.java
-│   └── Usuario.java
-│
-└── org.example
-    └── App.java
-```
 
 ---
 
