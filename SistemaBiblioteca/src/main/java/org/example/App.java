@@ -78,8 +78,15 @@ public class App {
                     List<Livro> livros =
                             livroDAO.listarLivros();
 
-                    for (Livro l : livros) {
-                        System.out.println(l);
+                    if (livros.isEmpty()) {
+
+                        System.out.println("Nenhum livro encontrado.");
+
+                    } else {
+
+                        for (Livro l : livros) {
+                            System.out.println(l);
+                        }
                     }
 
                     break;
@@ -94,7 +101,14 @@ public class App {
                     Livro livroBuscado =
                             livroDAO.buscarLivroPorId(idLivro);
 
-                    System.out.println(livroBuscado);
+                    if (livroBuscado != null) {
+
+                        System.out.println(livroBuscado);
+
+                    } else {
+
+                        System.out.println("Livro não encontrado.");
+                    }
 
                     break;
 
@@ -108,6 +122,7 @@ public class App {
                     livroDAO.excluirLivro(excluirLivro);
 
                     break;
+
 
                 case 5:
 
@@ -140,8 +155,15 @@ public class App {
                     List<Usuario> usuarios =
                             usuarioDAO.listarUsuarios();
 
-                    for (Usuario u : usuarios) {
-                        System.out.println(u);
+                    if (usuarios.isEmpty()) {
+
+                        System.out.println("Nenhum usuário encontrado.");
+
+                    } else {
+
+                        for (Usuario u : usuarios) {
+                            System.out.println(u);
+                        }
                     }
 
                     break;
@@ -156,7 +178,14 @@ public class App {
                     Usuario usuarioBuscado =
                             usuarioDAO.buscarUsuarioPorId(idUsuario);
 
-                    System.out.println(usuarioBuscado);
+                    if (usuarioBuscado != null) {
+
+                        System.out.println(usuarioBuscado);
+
+                    } else {
+
+                        System.out.println("Usuário não encontrado.");
+                    }
 
                     break;
 
@@ -181,8 +210,15 @@ public class App {
                     List<Usuario> usuariosLivro =
                             usuarioDAO.listarUsuariosPorLivro(idLivroUsuario);
 
-                    for (Usuario u : usuariosLivro) {
-                        System.out.println(u);
+                    if (usuariosLivro.isEmpty()) {
+
+                        System.out.println("Nenhum usuário possui esse livro.");
+
+                    } else {
+
+                        for (Usuario u : usuariosLivro) {
+                            System.out.println(u);
+                        }
                     }
 
                     break;
@@ -190,6 +226,7 @@ public class App {
                 case 0:
 
                     System.out.println("Saindo...");
+
                     break;
 
                 default:
