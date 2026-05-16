@@ -1,7 +1,3 @@
-// =====================================================
-// LivroDAOImplements.java
-// =====================================================
-
 package daoImplements;
 
 import Database.sqlConn;
