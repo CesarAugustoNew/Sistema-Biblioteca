@@ -1,6 +1,7 @@
 package dao;
 
 import model.Usuario;
+
 import java.util.List;
 
 public interface IUsuarioDAO {
@@ -10,6 +11,10 @@ public interface IUsuarioDAO {
     List<Usuario> listarUsuarios();
 
     Usuario buscarUsuarioPorId(int id);
+
+    void atualizarUsuario(Usuario usuario);
+
+    void devolverLivro(int idUsuario);
 
     void excluirUsuario(int id);
 
