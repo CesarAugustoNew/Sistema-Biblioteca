@@ -34,14 +34,17 @@ public class App {
             System.out.println("1. Cadastrar Livro");
             System.out.println("2. Listar Livros");
             System.out.println("3. Buscar Livro");
-            System.out.println("4. Excluir Livro");
+            System.out.println("4. Atualizar Livro");
+            System.out.println("5. Excluir Livro");
 
-            System.out.println("5. Cadastrar Usuário");
-            System.out.println("6. Listar Usuários");
-            System.out.println("7. Buscar Usuário");
-            System.out.println("8. Excluir Usuário");
+            System.out.println("6. Cadastrar Usuário");
+            System.out.println("7. Listar Usuários");
+            System.out.println("8. Buscar Usuário");
+            System.out.println("9. Atualizar Usuário");
+            System.out.println("10. Excluir Usuário");
 
-            System.out.println("9. Listar usuários por livro");
+            System.out.println("11. Listar usuários por livro");
+            System.out.println("12. Devolver Livro");
 
             System.out.println("0. Sair");
 
@@ -114,6 +117,47 @@ public class App {
 
                 case 4:
 
+                    System.out.print("ID do livro para atualizar: ");
+
+                    int idAtualizarLivro = sc.nextInt();
+                    sc.nextLine();
+
+                    Livro livroExistente =
+                            livroDAO.buscarLivroPorId(idAtualizarLivro);
+
+                    if (livroExistente == null) {
+
+                        System.out.println("Livro não encontrado.");
+                        break;
+                    }
+
+                    System.out.print("Novo nome (" + livroExistente.getNome() + "): ");
+                    String novoNomeLivro = sc.nextLine();
+
+                    if (!novoNomeLivro.isEmpty()) {
+                        livroExistente.setNome(novoNomeLivro);
+                    }
+
+                    System.out.print("Novo autor (" + livroExistente.getAutor() + "): ");
+                    String novoAutor = sc.nextLine();
+
+                    if (!novoAutor.isEmpty()) {
+                        livroExistente.setAutor(novoAutor);
+                    }
+
+                    System.out.print("Nova editora (" + livroExistente.getEditora() + "): ");
+                    String novaEditora = sc.nextLine();
+
+                    if (!novaEditora.isEmpty()) {
+                        livroExistente.setEditora(novaEditora);
+                    }
+
+                    livroDAO.atualizarLivro(livroExistente);
+
+                    break;
+
+                case 5:
+
                     System.out.print("ID do livro para excluir: ");
 
                     int excluirLivro = sc.nextInt();
@@ -123,8 +167,7 @@ public class App {
 
                     break;
 
-
-                case 5:
+                case 6:
 
                     System.out.print("Nome do usuário: ");
                     String nomeUsuario = sc.nextLine();
@@ -150,7 +193,7 @@ public class App {
 
                     break;
 
-                case 6:
+                case 7:
 
                     List<Usuario> usuarios =
                             usuarioDAO.listarUsuarios();
@@ -168,7 +211,7 @@ public class App {
 
                     break;
 
-                case 7:
+                case 8:
 
                     System.out.print("ID do usuário: ");
 
@@ -189,7 +232,57 @@ public class App {
 
                     break;
 
-                case 8:
+                case 9:
+
+                    System.out.print("ID do usuário para atualizar: ");
+
+                    int idAtualizarUsuario = sc.nextInt();
+                    sc.nextLine();
+
+                    Usuario usuarioExistente =
+                            usuarioDAO.buscarUsuarioPorId(idAtualizarUsuario);
+
+                    if (usuarioExistente == null) {
+
+                        System.out.println("Usuário não encontrado.");
+                        break;
+                    }
+
+                    System.out.print("Novo nome (" + usuarioExistente.getNome() + "): ");
+                    String novoNomeUsuario = sc.nextLine();
+
+                    if (!novoNomeUsuario.isEmpty()) {
+                        usuarioExistente.setNome(novoNomeUsuario);
+                    }
+
+                    System.out.print("Novo endereço (" + usuarioExistente.getEndereco() + "): ");
+                    String novoEndereco = sc.nextLine();
+
+                    if (!novoEndereco.isEmpty()) {
+                        usuarioExistente.setEndereco(novoEndereco);
+                    }
+
+                    System.out.print("Novo telefone (" + usuarioExistente.getTelefone() + "): ");
+                    String novoTelefone = sc.nextLine();
+
+                    if (!novoTelefone.isEmpty()) {
+                        usuarioExistente.setTelefone(novoTelefone);
+                    }
+
+                    System.out.print("Novo ID do livro (0 para nenhum): ");
+
+                    int novoLivro = sc.nextInt();
+                    sc.nextLine();
+
+                    usuarioExistente.setIdLivro(
+                            novoLivro == 0 ? null : novoLivro
+                    );
+
+                    usuarioDAO.atualizarUsuario(usuarioExistente);
+
+                    break;
+
+                case 10:
 
                     System.out.print("ID do usuário para excluir: ");
 
@@ -200,7 +293,7 @@ public class App {
 
                     break;
 
-                case 9:
+                case 11:
 
                     System.out.print("ID do livro: ");
 
@@ -220,6 +313,17 @@ public class App {
                             System.out.println(u);
                         }
                     }
+
+                    break;
+
+                case 12:
+
+                    System.out.print("ID do usuário: ");
+
+                    int usuarioDevolucao = sc.nextInt();
+                    sc.nextLine();
+
+                    usuarioDAO.devolverLivro(usuarioDevolucao);
 
                     break;
 

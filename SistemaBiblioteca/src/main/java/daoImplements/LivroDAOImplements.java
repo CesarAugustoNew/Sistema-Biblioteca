@@ -1,3 +1,7 @@
+// =====================================================
+// LivroDAOImplements.java
+// =====================================================
+
 package daoImplements;
 
 import Database.sqlConn;
@@ -104,6 +108,41 @@ public class LivroDAOImplements implements ILivroDAO {
     }
 
     @Override
+    public void atualizarLivro(Livro livro) {
+
+        String sql =
+                "UPDATE livro SET nome = ?, autor = ?, editora = ? WHERE idLivro = ?";
+
+        try (
+                Connection conn = sqlConn.getConnection();
+                PreparedStatement stnt =
+                        conn.prepareStatement(sql)
+        ) {
+
+            stnt.setString(1, livro.getNome());
+            stnt.setString(2, livro.getAutor());
+            stnt.setString(3, livro.getEditora());
+
+            stnt.setInt(4, Integer.parseInt(livro.getIdLivro()));
+
+            int linhas = stnt.executeUpdate();
+
+            if (linhas > 0) {
+
+                System.out.println("Livro atualizado com sucesso!");
+
+            } else {
+
+                System.out.println("Livro não encontrado.");
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Erro ao atualizar livro: " + e.getMessage());
+        }
+    }
+
+    @Override
     public void excluirLivro(int id) {
 
         String sql = "DELETE FROM livro WHERE idLivro = ?";
@@ -116,9 +155,16 @@ public class LivroDAOImplements implements ILivroDAO {
 
             stnt.setInt(1, id);
 
-            stnt.executeUpdate();
+            int linhas = stnt.executeUpdate();
 
-            System.out.println("Livro excluído!");
+            if (linhas > 0) {
+
+                System.out.println("Livro excluído!");
+
+            } else {
+
+                System.out.println("Livro não encontrado.");
+            }
 
         } catch (SQLException e) {
 

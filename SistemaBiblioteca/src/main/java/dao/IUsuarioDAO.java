@@ -11,6 +11,10 @@ public interface IUsuarioDAO {
 
     Usuario buscarUsuarioPorId(int id);
 
+    void atualizarUsuario(Usuario usuario);
+
+    void devolverLivro(int idUsuario);
+
     void excluirUsuario(int id);
 
     List<Usuario> listarUsuariosPorLivro(int idLivro);
