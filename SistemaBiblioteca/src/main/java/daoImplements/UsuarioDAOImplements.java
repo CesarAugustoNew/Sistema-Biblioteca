@@ -1,3 +1,7 @@
+// =====================================================
+// UsuarioDAOImplements.java
+// =====================================================
+
 package daoImplements;
 
 import Database.sqlConn;
@@ -249,7 +253,7 @@ public class UsuarioDAOImplements implements IUsuarioDAO {
 
         } catch (SQLException e) {
 
-            System.out.println("Erro ao listar usuários do livro: " + e.getMessage());
+            System.out.println("Erro ao listar usuários por livro: " + e.getMessage());
         }
 
         return usuarios;
