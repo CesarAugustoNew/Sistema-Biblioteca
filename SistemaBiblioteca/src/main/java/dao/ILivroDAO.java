@@ -11,5 +11,7 @@ public interface ILivroDAO {
 
     Livro buscarLivroPorId(int id);
 
+    void atualizarLivro(Livro livro);
+
     void excluirLivro(int id);
 }

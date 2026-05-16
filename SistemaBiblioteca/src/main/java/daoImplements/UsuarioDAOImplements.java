@@ -1,3 +1,7 @@
+// =====================================================
+// UsuarioDAOImplements.java
+// =====================================================
+
 package daoImplements;
 
 import Database.sqlConn;
@@ -27,8 +31,11 @@ public class UsuarioDAOImplements implements IUsuarioDAO {
             stnt.setString(3, usuario.getTelefone());
 
             if (usuario.getIdLivro() != null) {
+
                 stnt.setInt(4, usuario.getIdLivro());
+
             } else {
+
                 stnt.setNull(4, Types.INTEGER);
             }
 
@@ -112,6 +119,81 @@ public class UsuarioDAOImplements implements IUsuarioDAO {
     }
 
     @Override
+    public void atualizarUsuario(Usuario usuario) {
+
+        String sql =
+                "UPDATE usuario SET nome = ?, endereco = ?, telefone = ?, idLivro = ? WHERE idUsuario = ?";
+
+        try (
+                Connection conn = sqlConn.getConnection();
+                PreparedStatement stnt =
+                        conn.prepareStatement(sql)
+        ) {
+
+            stnt.setString(1, usuario.getNome());
+            stnt.setString(2, usuario.getEndereco());
+            stnt.setString(3, usuario.getTelefone());
+
+            if (usuario.getIdLivro() != null) {
+
+                stnt.setInt(4, usuario.getIdLivro());
+
+            } else {
+
+                stnt.setNull(4, Types.INTEGER);
+            }
+
+            stnt.setInt(5, Integer.parseInt(usuario.getIdUsuario()));
+
+            int linhas = stnt.executeUpdate();
+
+            if (linhas > 0) {
+
+                System.out.println("Usuário atualizado com sucesso!");
+
+            } else {
+
+                System.out.println("Usuário não encontrado.");
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Erro ao atualizar usuário: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void devolverLivro(int idUsuario) {
+
+        String sql =
+                "UPDATE usuario SET idLivro = NULL WHERE idUsuario = ?";
+
+        try (
+                Connection conn = sqlConn.getConnection();
+                PreparedStatement stnt =
+                        conn.prepareStatement(sql)
+        ) {
+
+            stnt.setInt(1, idUsuario);
+
+            int linhas = stnt.executeUpdate();
+
+            if (linhas > 0) {
+
+                System.out.println("Livro devolvido com sucesso!");
+
+            } else {
+
+                System.out.println("Usuário não encontrado.");
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Erro ao devolver livro: " + e.getMessage());
+        }
+    }
+
+    @Override
     public void excluirUsuario(int id) {
 
         String sql = "DELETE FROM usuario WHERE idUsuario = ?";
@@ -124,9 +206,16 @@ public class UsuarioDAOImplements implements IUsuarioDAO {
 
             stnt.setInt(1, id);
 
-            stnt.executeUpdate();
+            int linhas = stnt.executeUpdate();
 
-            System.out.println("Usuário excluído!");
+            if (linhas > 0) {
+
+                System.out.println("Usuário excluído!");
+
+            } else {
+
+                System.out.println("Usuário não encontrado.");
+            }
 
         } catch (SQLException e) {
 
@@ -164,7 +253,7 @@ public class UsuarioDAOImplements implements IUsuarioDAO {
 
         } catch (SQLException e) {
 
-            System.out.println("Erro ao listar usuários do livro: " + e.getMessage());
+            System.out.println("Erro ao listar usuários por livro: " + e.getMessage());
         }
 
         return usuarios;
