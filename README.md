@@ -227,15 +227,6 @@ App.java
 
 0. Sair
 ```
-
----
-
-# 🚀 Melhorias futuras
-
-- Atualizar livros
-- Atualizar usuários
-- Sistema de devolução de livros
-
 ---
 
 # 🎯 Objetivo do projeto
